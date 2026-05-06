@@ -1,0 +1,7 @@
+.git
+.dockerignore
+Dockerfile
+*.zip
+Indicaciones/
+update_data.py
+update_medios.py
