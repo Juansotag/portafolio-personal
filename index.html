@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GovLab — Laboratorio de Gobierno · Universidad de La Sabana</title>
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Libre+Franklin:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header id="navbar">
+    <div class="nav-container">
+      <div class="nav-logos">
+        <img src="assets/Govlab.png" alt="Logo GovLab" class="logo-govlab">
+        <div class="logo-divider"></div>
+        <img src="assets/Universidad de la Sabana.png" alt="Logo Universidad de La Sabana" class="logo-unisabana">
+      </div>
+
+      <button id="hamburger-btn" aria-label="Menú de navegación" class="hamburger-btn">
+        <i data-lucide="menu"></i>
+      </button>
+
+      <nav class="nav-links" style="display: flex; align-items: center; gap: 1.5rem;">
+        <button class="nav-link active" data-target="seccion-que-es">GovLab</button>
+        <button class="nav-link" data-target="seccion-que-hacemos">Soluciones</button>
+        <button class="nav-link" data-target="seccion-medios">Medios</button>
+        <button class="nav-link" data-target="seccion-quienes-somos">Equipo</button>
+        <button class="btn"
+          style="background-color: var(--c-yellow); color: var(--c-blue-dark); font-weight: 600; padding: 0.5rem 1rem;"
+          onclick="window.open('https://wa.me/573158905940?text=Hola%20Juan%2C%20quiero%20conocer%20un%20poco%20m%C3%A1s%20sobre%20el%20laboratorio%20de%20gobierno.', '_blank')">Agendar
+          reunión</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- SECCIÓN 1: ¿Qué es el GovLab? -->
+  <section id="seccion-que-es" class="page-section active">
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-content">
+        <h2 class="hero-subtitle"
+          style="color: white; margin-bottom: 1rem; font-size: 1.5rem; text-transform: none; font-family: var(--font-label); font-weight: 600; letter-spacing: normal;">
+          Hacemos que el sector público funcione mejor</h2>
+        <h1 class="hero-title" style="font-size: 4.5rem; line-height: 1.1;">Laboratorio de Gobierno</h1>
+        <p class="hero-tagline">Diseñamos e implementamos soluciones con datos, tecnología e inteligencia artificial
+          para gobiernos y organizaciones que trabajan con ellos.</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button class="btn btn-giant-primary"
+            onclick="window.open('https://wa.me/573158905940?text=Hola%20Juan%2C%20quiero%20conocer%20un%20poco%20m%C3%A1s%20sobre%20el%20laboratorio%20de%20gobierno.', '_blank')"
+            style="background-color: white; color: var(--c-blue-dark); border: none; font-weight: 600;">Agendar una
+            conversación</button>
+          <button class="btn btn-giant-primary"
+            onclick="document.querySelector('[data-target=\'seccion-que-hacemos\']').click()"
+            style="background-color: transparent; color: white; border: 2px solid white; font-weight: 600;">Ver
+            soluciones</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Problema -->
+    <div class="problem-section" style="background-color: var(--c-blue-tint); padding: 6rem 2rem;">
+      <div class="section-container"
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem; align-items: center;">
+        <div>
+          <p class="problem-intro"
+            style="font-size: 2rem; font-weight: 700; font-family: var(--font-display); color: var(--c-blue-dark); margin-bottom: 2rem; line-height: 1.2;">
+            Trabajar con el sector público no debería ser difícil.</p>
+          <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-primary); margin: 0;">Procesos lentos,
+            información fragmentada y herramientas que no conversan entre sí hacen que resolver problemas tome más
+            tiempo del necesario. Esto afecta a gobiernos, pero también a empresas, ONGs y organizaciones que dependen
+            de ellos.</p>
+        </div>
+        <div>
+          <img src="assets/photos/eventos/IMG_20240829_141430.jpg" alt="El problema del sector público"
+            style="width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); object-fit: cover; height: 400px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Impacto en números (Stats Bar) - MOVIDO AQUÍ -->
+    <div class="stats-bar" style="text-align: center; padding: 5rem 2rem; background-color: var(--c-blue-dark);">
+      <h2 class="section-title" style="color: white; margin-bottom: 3rem; text-align: center;">Impacto real</h2>
+      <div class="stats-container">
+        <div class="stat-item">
+          <div class="stat-number">+30</div>
+          <div class="stat-label">Soluciones para problemas reales</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">+450K</div>
+          <div class="stat-label">Registros analizados para toma de decisiones</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">6+</div>
+          <div class="stat-label">Proyectos activos en 2025</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">USD 1M+</div>
+          <div class="stat-label">Valor generado en cobertura de medios</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Líneas: analítica, IA y formación</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Propuesta de valor -->
+    <div class="value-section" style="padding: 6rem 2rem;">
+      <div class="section-container"
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem; align-items: center;">
+        <div style="order: -1;">
+          <img src="assets/photos/eventos/IMG_20250203_125605.jpg" alt="Propuesta de valor del GovLab"
+            style="width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); object-fit: cover; height: 400px;">
+        </div>
+        <div>
+          <h2 class="section-title" style="font-size: 2.2rem; margin-bottom: 2rem; line-height: 1.2;">En el GovLab
+            convertimos problemas públicos complejos en soluciones concretas.</h2>
+          <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 2rem;">No partimos
+            de cero. Usamos herramientas existentes, analítica de datos e inteligencia artificial para generar
+            resultados rápidos y medibles.</p>
+          <ul
+            style="list-style: none; padding: 0; font-size: 1.2rem; line-height: 2; font-weight: 600; color: var(--c-blue-dark);">
+            <li style="display: flex; align-items: center;"><i data-lucide="check-circle-2"
+                style="width: 24px; color: var(--c-blue-light); margin-right: 12px;"></i> Datos</li>
+            <li style="display: flex; align-items: center;"><i data-lucide="check-circle-2"
+                style="width: 24px; color: var(--c-blue-light); margin-right: 12px;"></i> Tecnología existente</li>
+            <li style="display: flex; align-items: center;"><i data-lucide="check-circle-2"
+                style="width: 24px; color: var(--c-blue-light); margin-right: 12px;"></i> Rediseño de procesos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Soluciones -->
+    <div class="solutions-core-section" style="padding: 6rem 2rem; background-color: var(--c-blue-tint);">
+      <div class="section-container">
+        <h2 class="section-title text-center" style="margin-bottom: 4rem;">Nuestras Soluciones</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+          <div class="module-card" style="padding: 2.5rem; display: flex; flex-direction: column;">
+            <i data-lucide="bar-chart"
+              style="width: 48px; height: 48px; color: var(--c-blue-dark); margin-bottom: 1.5rem;"></i>
+            <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Analítica de datos</h3>
+            <p style="font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary);">Convertimos grandes
+              volúmenes de información en decisiones claras.</p>
+            <ul style="list-style: none; padding: 0; color: var(--text-secondary); line-height: 1.8; flex-grow: 1;">
+              <li style="display: flex; align-items: center;"><i data-lucide="check"
+                  style="width: 18px; margin-right: 10px; color: var(--c-blue-dark);"></i> Dashboards e indicadores</li>
+              <li style="display: flex; align-items: center;"><i data-lucide="check"
+                  style="width: 18px; margin-right: 10px; color: var(--c-blue-dark);"></i> Modelos predictivos</li>
+              <li style="display: flex; align-items: center;"><i data-lucide="check"
+                  style="width: 18px; margin-right: 10px; color: var(--c-blue-dark);"></i> Análisis geoespacial</li>
+              <li style="display: flex; align-items: center;"><i data-lucide="check"
+                  style="width: 18px; margin-right: 10px; color: var(--c-blue-dark);"></i> Gobierno de datos</li>
+            </ul>
+          </div>
+          <div class="module-card" style="padding: 2.5rem; display: flex; flex-direction: column;">
+            <i data-lucide="bot"
+              style="width: 48px; height: 48px; color: var(--c-blue-dark); margin-bottom: 1.5rem;"></i>
+            <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Inteligencia artificial</h3>
+            <p style="font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary);">Diseñamos e implementamos
+              soluciones de IA adaptadas al contexto público.</p>
+            <ul style="list-style: none; padding: 0; color: var(--text-secondary); line-height: 1.8; flex-grow: 1;">
+              <li style="display: flex; align-items: center;"><i data-lucide="check"
+                  style="width: 18px; margin-right: 10px; color: var(--c-blue-dark);"></i> MVPs con IA</li>
+              <li style="display: flex; align-items: center;"><i data-lucide="check"
+                  style="width: 18px; margin-right: 10px; color: var(--c-blue-dark);"></i> Modelos de lenguaje</li>
+              <li style="display: flex; align-items: center;"><i data-lucide="check"
+                  style="width: 18px; margin-right: 10px; color: var(--c-blue-dark);"></i> Automatización de procesos
+              </li>
+            </ul>
+          </div>
+          <div class="module-card" style="padding: 2.5rem; display: flex; flex-direction: column;">
+            <i data-lucide="graduation-cap"
+              style="width: 48px; height: 48px; color: var(--c-blue-dark); margin-bottom: 1.5rem;"></i>
+            <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Formación</h3>
+            <p style="font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary);">Desarrollamos capacidades en
+              datos e IA dentro de su organización.</p>
+            <ul style="list-style: none; padding: 0; color: var(--text-secondary); line-height: 1.8; flex-grow: 1;">
+              <li style="display: flex; align-items: center;"><i data-lucide="check"
+                  style="width: 18px; margin-right: 10px; color: var(--c-blue-dark);"></i> Bootcamps prácticos</li>
+              <li style="display: flex; align-items: center;"><i data-lucide="check"
+                  style="width: 18px; margin-right: 10px; color: var(--c-blue-dark);"></i> Programas académicos</li>
+              <li style="display: flex; align-items: center;"><i data-lucide="check"
+                  style="width: 18px; margin-right: 10px; color: var(--c-blue-dark);"></i> Formación a la medida</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diferencial -->
+    <div class="differential-section" style="background-color: var(--c-blue-dark); color: white; padding: 8rem 2rem;">
+      <div class="section-container"
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem; align-items: center;">
+        <div>
+          <h2 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 2rem; line-height: 1.2;">No
+            estamos aquí para poner más reglas.<br>Estamos para hacer que las cosas funcionen.</h2>
+          <p style="font-size: 1.25rem; line-height: 1.8; opacity: 0.9;">Mientras muchas entidades del sector público
+            restringen, el GovLab habilita. No creamos más procesos — hacemos que los existentes funcionen mejor, más
+            rápido y con menos fricción.</p>
+        </div>
+        <div>
+          <img src="assets/photos/eventos/IMG_20251107_102213.jpg" alt="Diferencial"
+            style="width: 100%; border-radius: var(--radius); object-fit: cover; height: 400px; box-shadow: 0 8px 30px rgba(0,0,0,0.4);">
+        </div>
+      </div>
+    </div>
+
+    <!-- Para quién es -->
+    <div class="audiences-section" style="padding: 6rem 2rem; background-color: var(--c-cream);">
+      <div class="section-container">
+        <h2 class="section-title text-center"
+          style="margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">Trabajamos con
+          organizaciones que necesitan operar mejor en el sector público.</h2>
+        <div
+          style="max-width: 600px; margin: 0 auto; background: white; padding: 3rem; border-radius: var(--radius); box-shadow: var(--shadow);">
+          <ul
+            style="list-style: none; padding: 0; font-size: 1.25rem; line-height: 2.2; font-weight: 500; color: var(--text-primary);">
+            <li style="display: flex; align-items: center;"><i data-lucide="chevron-right"
+                style="color: var(--c-blue-light); margin-right: 12px; width: 24px;"></i> Gobiernos locales y regionales
+            </li>
+            <li style="display: flex; align-items: center;"><i data-lucide="chevron-right"
+                style="color: var(--c-blue-light); margin-right: 12px; width: 24px;"></i> Empresas que venden al Estado
+            </li>
+            <li style="display: flex; align-items: center;"><i data-lucide="chevron-right"
+                style="color: var(--c-blue-light); margin-right: 12px; width: 24px;"></i> ONGs y cooperación
+              internacional</li>
+            <li style="display: flex; align-items: center;"><i data-lucide="chevron-right"
+                style="color: var(--c-blue-light); margin-right: 12px; width: 24px;"></i> Proveedores de tecnología</li>
+            <li style="display: flex; align-items: center;"><i data-lucide="chevron-right"
+                style="color: var(--c-blue-light); margin-right: 12px; width: 24px;"></i> Entidades de control y
+              planeación</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- El ecosistema -->
+    <div class="ecosystem-section" style="padding: 6rem 2rem;">
+      <div class="section-container text-center">
+        <h2 class="section-title" style="max-width: 900px; margin: 0 auto 3rem;">Cuando trabaja con el GovLab, trabaja
+          con todo el ecosistema de la Universidad de La Sabana.</h2>
+        <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem;">
+          <span class="chip"
+            style="font-size: 1rem; padding: 0.8rem 1.5rem; background: var(--c-blue-tint); border: 1px solid var(--border-color); color: var(--c-blue-dark);"><i
+              data-lucide="users" style="width: 18px; margin-right: 8px;"></i> Profesores e investigadores</span>
+          <span class="chip"
+            style="font-size: 1rem; padding: 0.8rem 1.5rem; background: var(--c-blue-tint); border: 1px solid var(--border-color); color: var(--c-blue-dark);"><i
+              data-lucide="graduation-cap" style="width: 18px; margin-right: 8px;"></i> Estudiantes y alumni</span>
+          <span class="chip"
+            style="font-size: 1rem; padding: 0.8rem 1.5rem; background: var(--c-blue-tint); border: 1px solid var(--border-color); color: var(--c-blue-dark);"><i
+              data-lucide="building" style="width: 18px; margin-right: 8px;"></i> Empresas fundadas por egresados</span>
+          <span class="chip"
+            style="font-size: 1rem; padding: 0.8rem 1.5rem; background: var(--c-blue-tint); border: 1px solid var(--border-color); color: var(--c-blue-dark);"><i
+              data-lucide="network" style="width: 18px; margin-right: 8px;"></i> Red de aliados territoriales</span>
+          <span class="chip"
+            style="font-size: 1rem; padding: 0.8rem 1.5rem; background: var(--c-blue-tint); border: 1px solid var(--border-color); color: var(--c-blue-dark);"><i
+              data-lucide="globe-2" style="width: 18px; margin-right: 8px;"></i> Universidades aliadas</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aliados -->
+    <div class="partners-section" style="padding: 6rem 2rem; background-color: white;">
+      <div class="section-container">
+        <h2 class="section-title text-center">Entidades con las que hemos trabajado</h2>
+        <div
+          style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 3rem;">
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1.2rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 48px; height: 48px; background: var(--c-blue-tint); border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; color: var(--c-blue-dark); flex-shrink: 0;">
+              <i data-lucide="building-2"></i>
+            </div>
+            <span style="font-weight: 600;">CAR Cundinamarca</span>
+          </a>
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1.2rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 48px; height: 48px; background: var(--c-blue-tint); border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; color: var(--c-blue-dark); flex-shrink: 0;">
+              <i data-lucide="building-2"></i>
+            </div>
+            <span style="font-weight: 600;">FONDECUN</span>
+          </a>
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1.2rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 48px; height: 48px; background: var(--c-blue-tint); border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; color: var(--c-blue-dark); flex-shrink: 0;">
+              <i data-lucide="landmark"></i>
+            </div>
+            <span style="font-weight: 600;">Alcaldía de Zipaquirá</span>
+          </a>
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1.2rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 48px; height: 48px; background: var(--c-blue-tint); border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; color: var(--c-blue-dark); flex-shrink: 0;">
+              <i data-lucide="landmark"></i>
+            </div>
+            <span style="font-weight: 600;">Contraloría de Zipaquirá</span>
+          </a>
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1.2rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 48px; height: 48px; background: var(--c-blue-tint); border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; color: var(--c-blue-dark); flex-shrink: 0;">
+              <i data-lucide="car"></i>
+            </div>
+            <span style="font-weight: 600;">Sec. Distrital de Movilidad</span>
+          </a>
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1.2rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 48px; height: 48px; background: var(--c-blue-tint); border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; color: var(--c-blue-dark); flex-shrink: 0;">
+              <i data-lucide="shield"></i>
+            </div>
+            <span style="font-weight: 600;">Policía Ambiental</span>
+          </a>
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1.2rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 48px; height: 48px; background: var(--c-blue-tint); border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; color: var(--c-blue-dark); flex-shrink: 0;">
+              <i data-lucide="activity"></i>
+            </div>
+            <span style="font-weight: 600;">Clínica Universidad de La Sabana</span>
+          </a>
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1.2rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 48px; height: 48px; background: var(--c-blue-tint); border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; color: var(--c-blue-dark); flex-shrink: 0;">
+              <i data-lucide="briefcase"></i>
+            </div>
+            <span style="font-weight: 600;">Blend360</span>
+          </a>
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1.2rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 48px; height: 48px; background: var(--c-blue-tint); border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; color: var(--c-blue-dark); flex-shrink: 0;">
+              <i data-lucide="briefcase"></i>
+            </div>
+            <span style="font-weight: 600;">CorpoHass</span>
+          </a>
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1.2rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 48px; height: 48px; background: var(--c-blue-tint); border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; color: var(--c-blue-dark); flex-shrink: 0;">
+              <i data-lucide="briefcase"></i>
+            </div>
+            <span style="font-weight: 600;">Macondo Software</span>
+          </a>
+        </div>
+
+        <h2 class="section-title text-center" style="margin-top: 5rem;">Presencia en medios</h2>
+        <div
+          style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 3rem;">
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 40px; height: 40px; background: #eee; border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i data-lucide="newspaper"></i>
+            </div>
+            <span style="font-weight: 600;">El Tiempo</span>
+          </a>
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 40px; height: 40px; background: #eee; border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i data-lucide="newspaper"></i>
+            </div>
+            <span style="font-weight: 600;">Portafolio</span>
+          </a>
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 40px; height: 40px; background: #eee; border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i data-lucide="newspaper"></i>
+            </div>
+            <span style="font-weight: 600;">Forbes</span>
+          </a>
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 40px; height: 40px; background: #eee; border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i data-lucide="newspaper"></i>
+            </div>
+            <span style="font-weight: 600;">La República</span>
+          </a>
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 40px; height: 40px; background: #eee; border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i data-lucide="radio"></i>
+            </div>
+            <span style="font-weight: 600;">La FM</span>
+          </a>
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 40px; height: 40px; background: #eee; border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i data-lucide="tv"></i>
+            </div>
+            <span style="font-weight: 600;">Canal Capital</span>
+          </a>
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 40px; height: 40px; background: #eee; border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i data-lucide="tv"></i>
+            </div>
+            <span style="font-weight: 600;">Red+ Noticias</span>
+          </a>
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 40px; height: 40px; background: #eee; border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i data-lucide="newspaper"></i>
+            </div>
+            <span style="font-weight: 600;">El Heraldo</span>
+          </a>
+          <a href="#" class="partner-card"
+            style="display: flex; align-items: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <div
+              style="width: 40px; height: 40px; background: #eee; border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i data-lucide="newspaper"></i>
+            </div>
+            <span style="font-weight: 600;">Vanguardia</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- SECCIÓN 2: ¿Qué hacemos? -->
+  <section id="seccion-que-hacemos" class="page-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Nuestro Portafolio de Productos</h2>
+        <p class="section-subtitle">Más de 30 soluciones digitales para el sector público y privado</p>
+      </div>
+
+      <!-- Filtros -->
+      <div class="filters-container">
+        <div class="filter-group" id="filter-segment">
+          <span class="filter-label">Segmento:</span>
+          <!-- Generado dinámicamente -->
+        </div>
+        <div class="filter-group" id="filter-type">
+          <span class="filter-label">Tipo:</span>
+          <!-- Generado dinámicamente -->
+        </div>
+        <div class="filter-group" id="filter-status">
+          <span class="filter-label">Estado:</span>
+          <!-- Generado dinámicamente -->
+        </div>
+      </div>
+
+      <div class="results-counter" id="results-counter">
+        Mostrando 30 de 30 productos
+      </div>
+
+      <!-- Grid de Productos -->
+      <div class="products-grid" id="products-grid">
+        <!-- Tarjetas inyectadas por JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN: Medios -->
+  <section id="seccion-medios" class="page-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Apariciones en Medios</h2>
+        <p class="section-subtitle">El impacto de nuestro trabajo en la opinión pública</p>
+      </div>
+      <div class="medios-grid" id="medios-grid">
+        <!-- Tarjetas inyectadas por JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3: ¿Quiénes somos? -->
+  <section id="seccion-quienes-somos" class="page-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Nuestro Equipo</h2>
+        <p class="section-subtitle">Las personas detrás de las soluciones</p>
+      </div>
+
+      <div class="team-grid">
+        <!-- Team Card 1 -->
+        <div class="team-card module-card">
+          <img src="assets/photos/Miembros/Omar Orostegui.jpg" alt="Omar Oróstegui" class="team-avatar-img">
+          <div class="team-info">
+            <h3 class="team-name">Omar Oróstegui Restrepo</h3>
+            <p class="team-role">Director Ejecutivo del GovLab</p>
+            <p class="team-institution">Universidad de La Sabana</p>
+            <div class="team-bio">
+              <p>Politólogo de la Pontificia Universidad Javeriana, con maestría en Estudios para el Desarrollo de la
+                Universidad de Manchester, Reino Unido. Candidato al doctorado en Desarrollo Sostenible de la
+                Universidad de Loyola. Posee una amplia experiencia profesional en análisis y evaluación de políticas
+                públicas urbanas y proyectos sociales con énfasis en procesos de sostenibilidad, comunicación
+                estratégica y aprendizajes soportados en evidencia. Profesor universitario, columnista semanal del
+                periódico El Tiempo. Autor del libro, La nueva anormalidad. Actualmente se desempeña como profesor de
+                planta y director ejecutivo del Laboratorio de Gobierno de la Universidad de La Sabana.</p>
+            </div>
+            <div class="team-tags">
+              <span class="tag">Políticas Públicas</span>
+              <span class="tag">Innovación Social</span>
+              <span class="tag">Sostenibilidad</span>
+              <span class="tag">Comunicación Estratégica</span>
+            </div>
+            <div class="team-contact">
+              <a href="mailto:dirgovlab@unisabana.edu.co" class="contact-link"><i data-lucide="mail"></i>
+                dirgovlab@unisabana.edu.co</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Card 2 -->
+        <div class="team-card module-card">
+          <img src="assets/photos/Miembros/Juan Sotelo.jpg" alt="Juan Diego Sotelo Aguilar" class="team-avatar-img">
+          <div class="team-info">
+            <h3 class="team-name">Juan Diego Sotelo Aguilar</h3>
+            <p class="team-role">Coordinador Técnico de Analítica de Datos e IA</p>
+            <p class="team-institution">Universidad de La Sabana</p>
+            <div class="team-bio">
+              <p>Politólogo y Economista (Finanzas Internacionales) de la Universidad de La Sabana, candidato a Magíster
+                en Analítica Aplicada de la misma institución (GPA 4.7/5.0). Consultor en Analítica de Datos e
+                Inteligencia Artificial con más de 2 años de experiencia en proyectos de consultoría nacional e
+                internacional para el sector público y privado. Profesor catedrático de Economía e Ingeniería
+                Informática, donde enseña analítica aplicada, econometría y machine learning. Ha liderado el desarrollo
+                de más de 30 soluciones digitales generando más de USD 1M en valor de prensa y USD 37K en proyectos
+                activos en 2025. Cuenta con 2 desarrollos de software registrados ante la DNDA y certificación AWS
+                Academy Educator.</p>
+            </div>
+            <div class="team-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Power BI</span>
+              <span class="tag">Machine Learning</span>
+              <span class="tag">SQL</span>
+              <span class="tag">LLMs</span>
+              <span class="tag">Consultoría</span>
+              <span class="tag">Docencia</span>
+            </div>
+            <div class="team-contact">
+              <a href="mailto:juansoag@unisabana.edu.co" class="contact-link"><i data-lucide="mail"></i>
+                juansoag@unisabana.edu.co</a>
+              <a href="https://github.com/Juansotag" target="_blank" rel="noopener noreferrer" class="contact-link"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide">
+                  <path
+                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                  <path d="M9 18c-4.51 2-5-2-7-2" />
+                </svg> GitHub</a>
+              <a href="https://www.linkedin.com/in/juan-diego-sotelo-aguilar-b421741a3/" target="_blank"
+                rel="noopener noreferrer" class="contact-link"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                  height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" class="lucide">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect width="4" height="12" x="2" y="9" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg> LinkedIn</a>
+              <a href="tel:+573158905940" class="contact-link"><i data-lucide="phone"></i> +57 315 890 5940</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer"
+    style="background-color: var(--c-blue-dark); color: white; padding: 4rem 2rem 2rem 2rem; position: relative;">
+    <div class="footer-container" style="max-width: 1200px; margin: 0 auto;">
+
+      <!-- Top Section: 2 Columns -->
+      <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem; margin-bottom: 4rem;">
+
+        <!-- Left Column: CTA & Info -->
+        <div class="footer-left" style="display: flex; flex-direction: column; justify-content: center;">
+          <div style="border-left: 3px solid white; padding-left: 1.5rem; margin-bottom: 2rem;">
+            <h2 style="font-family: var(--font-display); font-size: 2.8rem; line-height: 1.1; color: white; margin: 0;">
+              Prepárate para el futuro de la administración pública.</h2>
+          </div>
+          <p style="font-size: 1.1rem; margin-bottom: 3rem; opacity: 0.9; line-height: 1.6; max-width: 450px;">
+            Déjanos tus datos y uno de nuestros especialistas estratégicos se pondrá en contacto contigo para evaluar
+            los retos de tu empresa.<br>
+            <span
+              style="font-size: 0.8rem; opacity: 0.7; font-weight: bold; text-transform: uppercase; margin-top: 0.5rem; display: block;">GovLab
+              - Laboratorio de Gobierno</span>
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <i data-lucide="map-pin" style="width: 32px; height: 32px; color: white;"></i>
+              <p style="margin: 0; font-size: 1rem; opacity: 0.9;">Campus del Puente del Común,<br>Km. 7, Autopista
+                Norte de Bogotá.<br>Chía, Cundinamarca, Colombia.</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <i data-lucide="mail" style="width: 32px; height: 32px; color: white;"></i>
+              <a href="mailto:dirgovlab@unisabana.edu.co"
+                style="margin: 0; font-size: 1rem; color: white; text-decoration: none; opacity: 0.9;">dirgovlab@unisabana.edu.co</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Contact Form -->
+        <div class="footer-right">
+          <form action="mailto:dirgovlab@unisabana.edu.co" method="post" enctype="text/plain"
+            style="display: flex; flex-direction: column; gap: 1rem;">
+            <input type="text" name="Nombre" placeholder="Nombre completo:" class="footer-input" required>
+            <input type="text" name="Empresa" placeholder="Empresa / Organización:" class="footer-input" required>
+            <input type="email" name="Correo" placeholder="Correo electrónico corporativo:" class="footer-input"
+              required>
+            <textarea name="Reto" placeholder="Cuéntanos brevemente tu reto:" rows="3"
+              class="footer-input footer-textarea" required></textarea>
+
+            <label
+              style="display: flex; align-items: flex-start; gap: 0.8rem; font-size: 0.85rem; opacity: 0.9; line-height: 1.4; margin-top: 0.5rem; cursor: pointer;">
+              <input type="checkbox" required style="margin-top: 0.2rem; cursor: pointer;">
+              <span>Autorizo de manera previa, expresa e informada a la Universidad de La Sabana para el tratamiento de
+                mis datos personales con la finalidad de gestionar mi solicitud, enviarme información relacionada y
+                según lo establecido en la <a href="#"
+                  style="color: white; text-decoration: underline; font-weight: bold;">Política de Privacidad y
+                  Tratamiento de Datos</a>. *</span>
+            </label>
+
+            <button type="submit"
+              style="background-color: white; color: var(--c-blue-dark); font-weight: bold; font-family: var(--font-label); border: none; padding: 1rem; border-radius: 30px; margin-top: 1rem; cursor: pointer; transition: transform 0.2s, background-color 0.2s; max-width: 250px; align-self: flex-end;"
+              onmouseover="this.style.backgroundColor='#f0f0f0'; this.style.transform='scale(1.02)'"
+              onmouseout="this.style.backgroundColor='white'; this.style.transform='scale(1)'">
+              Conversemos
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom Section: Divider & Logos -->
+      <div
+        style="border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 2rem; display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; gap: 2rem;">
+        <div style="display: flex; align-items: center; gap: 1.5rem;">
+          <img src="assets/Govlab.png" alt="GovLab" style="height: 40px; filter: brightness(0) invert(1);">
+          <div style="width: 1px; height: 35px; background-color: rgba(255, 255, 255, 0.3);"></div>
+          <img src="assets/Universidad de la Sabana.png" alt="Universidad de La Sabana"
+            style="height: 40px; filter: brightness(0) invert(1);">
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botón Flotante WhatsApp -->
+  <a href="https://wa.me/573158905940?text=Hola%20Juan%2C%20quiero%20conocer%20un%20poco%20m%C3%A1s%20sobre%20el%20laboratorio%20de%20gobierno."
+    target="_blank" class="whatsapp-float">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="white" stroke="none">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+    </svg>
+  </a>
+
+  <!-- MODAL (Video demo) -->
+  <div id="modal-video" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content module-card">
+      <button class="modal-close" aria-label="Cerrar"><i data-lucide="x"></i></button>
+      <h3>Video demo</h3>
+      <p>Este video estará disponible próximamente.</p>
+      <p>Para una demo en vivo, escríbenos a <a href="mailto:dirgovlab@unisabana.edu.co">dirgovlab@unisabana.edu.co</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <!-- Lógica -->
+  <script src="app.js"></script>
+</body>
+
+</html>
