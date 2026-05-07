@@ -141,7 +141,7 @@ const PRODUCTS = [
     pptUrl: '',
   },
   {
-    segment: 'Sector Privado',
+    segment: 'Sector Público',
     type: 'Asistentes de Voz con IA',
     name: 'Gober Santander',
     slogan: 'Un asistente público para cada ciudadano',
@@ -365,7 +365,7 @@ const PRODUCTS = [
     pptUrl: '',
   },
   {
-    segment: 'Sector Privado',
+    segment: 'Sector Público',
     type: 'Asistentes de Voz con IA',
     name: 'Alocandidato',
     slogan: 'La campaña que llama, nunca la que cansa',
@@ -689,7 +689,7 @@ const filterOptions = {
         'Inteligencia Geoespacial',
         'Simuladores & Comunicación Política'
     ],
-    status: ['Todos', 'En línea', 'En mantenimiento', 'Activo', 'NA']
+    status: ['Todos', 'En línea', 'En mantenimiento', 'Activo']
 };
 
 // --- Parsear CSV con separador ';' ---
