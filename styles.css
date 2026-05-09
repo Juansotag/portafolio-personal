@@ -263,6 +263,8 @@ button {
   z-index: 100;
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 32, 91, 0.08);
+  /* Necesario para que el menú mobile (position: absolute) se posicione relativo al header */
+  position: sticky;
 }
 
 .nav-container {
@@ -302,6 +304,7 @@ button {
 
 .nav-links {
   display: flex;
+  align-items: center;
   gap: 2rem;
 }
 
