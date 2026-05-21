@@ -2,6 +2,20 @@
 const PRODUCTS = [
   {
     segment: 'Sector Público',
+    type: 'ChatBots & Automatización',
+    name: 'MPAChat',
+    slogan: 'Tu perfil profesional para el MPA, en minutos',
+    description: 'Chat con IA que analiza el CV de los interesados en la Maestría en Administración Pública (MPA / Masters in Public Administration) de la Escuela de Gobierno de la Unisabana. Genera recomendaciones personalizadas, construye un perfil del candidato y guarda su hoja de vida e información.',
+    status: 'En línea',
+    demoMode: 'mostrar',
+    appUrl: 'https://mpachat-unisabana.up.railway.app/',
+    githubUrl: '',
+    logo: 'assets/photos/Aliados/escuela.png',
+    videoUrl: '',
+    pptUrl: '',
+  },
+  {
+    segment: 'Sector Público',
     type: 'Dashboards & Analítica de datos',
     name: 'Observatorio Social de Zipaquirá - OSZ',
     slogan: 'Alcaldía de Zipaquirá',
