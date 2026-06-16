@@ -987,8 +987,10 @@ function renderProducts(productsToRender) {
     let buttonsHtml = '';
 
     if (!isTransversal) {
-      // Presentación privada (proyectos de clínica)
-      if (product.demoMode === 'ppt' && product.pptUrl) {
+      if (product.name.includes('Clínica') || product.name.includes('Notaria') || product.name.includes('Notaría')) {
+        const action = product.appUrl ? `onclick="window.open('${product.appUrl}', '_blank')"` : `onclick="window.open('${product.pptUrl}', '_blank')"`;
+        buttonsHtml += `<button class="btn btn-primary" ${action}><i data-lucide="message-square"></i> Contáctanos</button>`;
+      } else if (product.demoMode === 'ppt' && product.pptUrl) {
         buttonsHtml += `<a class="btn btn-primary" href="${product.pptUrl}" target="_blank" rel="noopener noreferrer"><i data-lucide="presentation"></i> Ver presentación</a>`;
       } else if (product.demoMode === 'solicitar') {
         buttonsHtml += `<button class="btn btn-outline" onclick="openModal()"><i data-lucide="message-square"></i> Solicitar demo</button>`;
