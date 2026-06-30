@@ -2,6 +2,12 @@ const express = require('express');
 const path    = require('path');
 const fs      = require('fs');
 
+// Polyfill fetch para Node < 18
+if (typeof fetch === 'undefined') {
+  global.fetch = require('node-fetch');
+}
+
+
 // ── Cargar .env en local (no necesario en Railway) ────────────────────────────
 const envPath = path.join(__dirname, '.env');
 if (fs.existsSync(envPath)) {
