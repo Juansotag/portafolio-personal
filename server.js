@@ -1,31 +1,44 @@
 const express = require('express');
-const path = require('path');
-const Anthropic = require('@anthropic-ai/sdk');
-const rateLimit = require('express-rate-limit');
-const cors = require('cors');
-const fs = require('fs');
+const path    = require('path');
+const fs      = require('fs');
 
-// Cargar .env manualmente si existe (para desarrollo local sin dotenv)
+// ── Cargar .env en local (no necesario en Railway) ────────────────────────────
 const envPath = path.join(__dirname, '.env');
 if (fs.existsSync(envPath)) {
-  const lines = fs.readFileSync(envPath, 'utf8').split('\n');
-  for (const line of lines) {
+  fs.readFileSync(envPath, 'utf8').split('\n').forEach(line => {
     const trimmed = line.trim();
     if (trimmed && !trimmed.startsWith('#')) {
-      const [key, ...vals] = trimmed.split('=');
-      if (key && vals.length) process.env[key.trim()] = vals.join('=').trim();
+      const idx = trimmed.indexOf('=');
+      if (idx > 0) {
+        const key = trimmed.slice(0, idx).trim();
+        const val = trimmed.slice(idx + 1).trim();
+        if (!process.env[key]) process.env[key] = val;
+      }
     }
-  }
+  });
 }
 
-
-const app = express();
+const app  = express();
 const PORT = process.env.PORT || 3000;
+const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 
-// ── Anthropic client ──────────────────────────────────────────────────────────
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+// Railway usa reverse proxy → confiar en X-Forwarded-For
+app.set('trust proxy', 1);
+app.use(express.json({ limit: '10kb' }));
+
+// ── Rate limiter simple (sin dependencias extra) ───────────────────────────────
+const requests = new Map(); // ip → { count, resetAt }
+function rateLimited(ip) {
+  const now = Date.now();
+  const entry = requests.get(ip);
+  if (!entry || now > entry.resetAt) {
+    requests.set(ip, { count: 1, resetAt: now + 60_000 });
+    return false;
+  }
+  if (entry.count >= 15) return true;
+  entry.count++;
+  return false;
+}
 
 // ── System prompt ─────────────────────────────────────────────────────────────
 const SYSTEM_PROMPT = `You are Juan Sotelo Aguilar's personal assistant embedded in his professional portfolio website. You answer questions about Juan in a warm, concise, and professional tone.
@@ -72,37 +85,24 @@ Areas of expertise:
 3. Geospatial Intelligence — maps, territorial analysis, environmental data
 4. Political Communication Simulators
 
-Notable projects (portfolio):
-- ZipaData: Social Observatory for Zipaquirá municipality (public sector)
+Notable projects:
+- ZipaData: Social Observatory for Zipaquirá municipality
 - Forecast models for agricultural demand (CorpoHass)
 - Clinical analytics dashboard for Clínica Universidad de La Sabana
 - AI voice assistants and chatbots for government and private clients
-- Geospatial monitoring platforms for CAR Cundinamarca and environmental agencies
+- Geospatial monitoring platforms for CAR Cundinamarca
 
 CV / Resume:
 - Spanish CV: /CV_Juan_Diego_Sotelo_ES.pdf
 - English CV: /CV_Juan_Diego_Sotelo_EN.pdf
 
 BEHAVIOR RULES:
-1. Keep answers short and direct (2–4 sentences max unless a detailed list is needed).
-2. If someone asks for the CV or resume: provide the direct download link based on their language (Spanish → ES, English → EN). Format it as a clickable markdown link.
-3. If asked something outside Juan's professional profile (politics, opinions, unrelated topics), politely redirect: "I'm only able to answer questions about Juan's professional profile. Is there anything specific about his work or skills I can help you with?"
+1. Keep answers short and direct (2-4 sentences max unless a detailed list is needed).
+2. If someone asks for the CV or resume: provide the direct download link based on their language (Spanish -> ES, English -> EN). Format it as a clickable markdown link.
+3. If asked something outside Juan's professional profile, politely redirect.
 4. Never invent information not listed above.
-5. Always refer to Juan in third person when describing him, or use "Juan" — not "I".
-6. If the user wants to contact Juan, provide his email or WhatsApp: https://wa.me/573158905940`;
-
-// ── Middleware ────────────────────────────────────────────────────────────────
-app.use(cors());
-app.use(express.json({ limit: '10kb' }));
-
-// Rate limiter: max 15 requests per IP per minute
-const chatLimiter = rateLimit({
-  windowMs: 60 * 1000,
-  max: 15,
-  message: { error: 'Too many requests. Please wait a moment.' },
-  standardHeaders: true,
-  legacyHeaders: false,
-});
+5. Always refer to Juan in third person — not "I".
+6. If the user wants to contact Juan: email juansotag1@hotmail.com or WhatsApp https://wa.me/573158905940`;
 
 // ── Static files ──────────────────────────────────────────────────────────────
 app.use(express.static(path.join(__dirname), {
@@ -111,65 +111,80 @@ app.use(express.static(path.join(__dirname), {
 }));
 
 // ── Chat endpoint ─────────────────────────────────────────────────────────────
-app.post('/api/chat', chatLimiter, async (req, res) => {
+app.post('/api/chat', async (req, res) => {
+  const ip = req.ip || 'unknown';
+
+  if (rateLimited(ip)) {
+    return res.status(429).json({ error: 'Demasiadas solicitudes. Espera un momento.' });
+  }
+
+  if (!ANTHROPIC_API_KEY) {
+    console.error('ERROR: ANTHROPIC_API_KEY no está configurada');
+    return res.status(500).json({ error: 'El chatbot no está configurado. Contacta al administrador.' });
+  }
+
+  const { messages } = req.body;
+  if (!messages || !Array.isArray(messages) || messages.length === 0) {
+    return res.status(400).json({ error: 'messages array is required' });
+  }
+
+  // Sanitize: keep last 20, ensure strings, strip leading assistant messages
+  let sanitized = messages
+    .slice(-20)
+    .filter(m => m.role && typeof m.content === 'string' && m.content.trim())
+    .map(m => ({
+      role: m.role === 'assistant' ? 'assistant' : 'user',
+      content: m.content.slice(0, 2000),
+    }));
+
+  // Claude API requires first message to be 'user'
+  while (sanitized.length > 0 && sanitized[0].role === 'assistant') {
+    sanitized.shift();
+  }
+
+  if (sanitized.length === 0) {
+    return res.status(400).json({ error: 'No valid user messages' });
+  }
+
   try {
-    const { messages } = req.body;
-
-    if (!messages || !Array.isArray(messages) || messages.length === 0) {
-      return res.status(400).json({ error: 'messages array is required' });
-    }
-
-    // Validate, cap history, and sanitize roles
-    let sanitized = messages
-      .slice(-20)
-      .filter(m => m.role && m.content && typeof m.content === 'string')
-      .map(m => ({
-        role: m.role === 'assistant' ? 'assistant' : 'user',
-        content: m.content.slice(0, 2000),
-      }));
-
-    // Claude requires the conversation to start with a 'user' message
-    while (sanitized.length > 0 && sanitized[0].role === 'assistant') {
-      sanitized.shift();
-    }
-
-    if (sanitized.length === 0) {
-      return res.status(400).json({ error: 'No valid user messages provided' });
-    }
-
-    const response = await anthropic.messages.create({
-      model: 'claude-3-5-haiku-20241022',
-      max_tokens: 512,
-      system: SYSTEM_PROMPT,
-      messages: sanitized,
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type':      'application/json',
+        'x-api-key':         ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01',
+      },
+      body: JSON.stringify({
+        model:      'claude-3-5-haiku-20241022',
+        max_tokens: 512,
+        system:     SYSTEM_PROMPT,
+        messages:   sanitized,
+      }),
     });
 
-    const reply = response.content[0]?.text ?? '';
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error('Anthropic API error:', response.status, JSON.stringify(data));
+      return res.status(500).json({ error: data.error?.message || 'Error al contactar Claude.' });
+    }
+
+    const reply = data.content?.[0]?.text ?? '';
     res.json({ reply });
 
   } catch (err) {
-    // Log full error details for Railway logs
-    console.error('Claude API error:', err.status, err.message, JSON.stringify(err.error ?? ''));
-    if (err.status === 401) {
-      return res.status(500).json({ error: 'API key inválida o no configurada.' });
-    }
-    if (err.status === 400) {
-      return res.status(500).json({ error: 'Formato de mensaje inválido: ' + err.message });
-    }
-    res.status(500).json({ error: 'Something went wrong. Please try again.' });
+    console.error('Fetch error:', err.message);
+    res.status(500).json({ error: 'Error de red al contactar Claude.' });
   }
 });
 
-
-// ── Fallback: serve index.html for any unknown route ─────────────────────────
-app.get('*', (req, res) => {
+// ── Fallback ──────────────────────────────────────────────────────────────────
+app.get('*', (_req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // ── Start ─────────────────────────────────────────────────────────────────────
 app.listen(PORT, () => {
-  console.log(`✅  Servidor corriendo en http://localhost:${PORT}`);
-  if (!process.env.ANTHROPIC_API_KEY) {
-    console.warn('⚠️   ANTHROPIC_API_KEY no está configurada. El chat no funcionará.');
-  }
+  console.log(`Servidor en http://localhost:${PORT}`);
+  console.log(`ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY ? 'OK (' + ANTHROPIC_API_KEY.slice(0,12) + '...)' : 'NO CONFIGURADA'}`);
 });
