@@ -239,62 +239,6 @@ const PRODUCTS = [
     pptUrl: '',
   },
   {
-    segment: 'Transversal',
-    type: 'Formación Profesional en IA',
-    name: 'Doctorado en IA',
-    slogan: 'Investiga el futuro, lidera el cambio',
-    description: 'Programa doctoral de investigación en inteligencia artificial. Enfocado en soluciones para el sector público y políticas basadas en evidencia.',
-    status: 'Activo',
-    demoMode: 'mostrar',
-    appUrl: 'https://www.unisabana.edu.co/programas/posgrados/doctorado-en-inteligencia-artificial',
-    githubUrl: '',
-    logo: 'assets/Govlab.png',
-    videoUrl: '',
-    pptUrl: '',
-  },
-  {
-    segment: 'Transversal',
-    type: 'Formación Profesional en IA',
-    name: 'Maestría en IA',
-    slogan: 'Domina la IA, transforma tu sector',
-    description: 'Programa de posgrado en inteligencia artificial con énfasis en aplicaciones para gobierno, política pública y gestión organizacional.',
-    status: 'Activo',
-    demoMode: 'mostrar',
-    appUrl: 'https://www.unisabana.edu.co/programas/posgrados/maestria-en-analitica-aplicada',
-    githubUrl: '',
-    logo: 'assets/Govlab.png',
-    videoUrl: '',
-    pptUrl: '',
-  },
-  {
-    segment: 'Transversal',
-    type: 'Formación Profesional en IA',
-    name: 'Pregrado en IA',
-    slogan: 'Aprende IA desde la raíz',
-    description: 'Programa de pregrado en inteligencia artificial de la Universidad de La Sabana. Formación integral en datos, modelos y aplicaciones.',
-    status: 'Activo',
-    demoMode: 'mostrar',
-    appUrl: 'https://www.unisabana.edu.co/programas/pregrados/ciencia-de-datos',
-    githubUrl: '',
-    logo: 'assets/Govlab.png',
-    videoUrl: '',
-    pptUrl: '',
-  },
-  {
-    segment: 'Transversal',
-    type: 'Formación Profesional en IA',
-    name: 'Bootcamps en IA',
-    slogan: 'Habilidades reales, en tiempo récord',
-    description: 'Programas de formación técnica intensiva en IA para profesionales y equipos. Orientados a aplicaciones prácticas en distintos sectores.',
-    status: 'Activo',
-    demoMode: 'mostrar',
-    appUrl: 'https://www.unisabana.edu.co/programas/educacion-continua/curso/curso-experto-en-inteligencia-artificial-para-profesionales-innovadores',
-    githubUrl: '',
-    logo: 'assets/Govlab.png',
-    videoUrl: '',
-    pptUrl: '',
-  },
-  {
     segment: 'Sector Público',
     type: 'Dashboards & Analítica de datos',
     name: 'Análisis Clínica Universidad de la Sabana',
@@ -718,15 +662,13 @@ const filterOptions = {
   segment: [
     'Todos',
     'Sector Privado',
-    'Sector Público',
-    'Transversal'
+    'Sector Público'
   ],
   type: [
     'Todos los tipos',
     'Asistentes de Voz con IA',
     'ChatBots & Automatización',
     'Dashboards & Analítica de datos',
-    'Formación Profesional en IA',
     'Gestión Documental con IA',
     'Inteligencia Geoespacial',
     'Simuladores & Comunicación Política'
@@ -818,22 +760,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initModal();
   lucide.createIcons();
 
-  // Cargar medios dinamicamente desde CSV (encoding Windows-1252)
-  try {
-    const response = await fetch('medios/medios.csv');
-    const buffer = await response.arrayBuffer();
-    const text = new TextDecoder('windows-1252').decode(buffer);
-    const medios = parseCSV(text);
-
-    // Ordenar de mas reciente a mas antiguo
-    medios.sort((a, b) => parseDate(b.Fecha) - parseDate(a.Fecha));
-
-    allMedios = medios;
-    initMediosFilters(medios);
-    applyMediosFilters();
-  } catch (e) {
-    console.warn('No se pudo cargar medios.csv:', e);
-  }
+  // Sección de medios eliminada del portafolio personal
 });
 
 // --- Inicializar filtros de medios ---
