@@ -8,6 +8,8 @@ if (typeof fetch === 'undefined') {
 }
 
 
+
+
 // ── Cargar .env en local (no necesario en Railway) ────────────────────────────
 const envPath = path.join(__dirname, '.env');
 if (fs.existsSync(envPath)) {
@@ -183,6 +185,17 @@ app.post('/api/chat', async (req, res) => {
     console.error('Fetch error:', err.message);
     res.status(500).json({ error: 'Error de red al contactar Claude.' });
   }
+});
+
+// ── Servir PDFs con Content-Type correcto ────────────────────────────────────
+app.get('/*.pdf', (req, res) => {
+  const filename = path.basename(req.path);
+  const filePath = path.join(__dirname, filename);
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Disposition', `inline; filename="${filename}"`);
+  res.sendFile(filePath, err => {
+    if (err) res.status(404).send('PDF no encontrado: ' + filename);
+  });
 });
 
 // ── Fallback ──────────────────────────────────────────────────────────────────
