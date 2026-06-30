@@ -842,12 +842,12 @@
     }
 
     function parseLinks(text) {
-      // Convert markdown links [text](url) → <a> — supports both https:// and relative /paths
+      // Convert markdown links [text](url) → <a>
+      // Note: do NOT apply _italic_ replacement as it corrupts URLs with underscores
       return text
-        .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
-        .replace(/\[([^\]]+)\]\((\/[^\)]+\.pdf)\)/g, '<a href="$2" download target="_blank" rel="noopener" style="font-weight:700;color:#1282a2;">$1 ⬇</a>')
-        .replace(/_(.*?)_/g, '<em>$1</em>');
+        .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
     }
+
 
 
     function addMessage(role, text) {
