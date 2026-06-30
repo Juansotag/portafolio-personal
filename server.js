@@ -119,17 +119,22 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
       return res.status(400).json({ error: 'messages array is required' });
     }
 
-    // Validate message format and limit history to last 20 turns
-    const sanitized = messages
+    // Validate, cap history, and sanitize roles
+    let sanitized = messages
       .slice(-20)
       .filter(m => m.role && m.content && typeof m.content === 'string')
       .map(m => ({
         role: m.role === 'assistant' ? 'assistant' : 'user',
-        content: m.content.slice(0, 2000), // cap individual message length
+        content: m.content.slice(0, 2000),
       }));
 
+    // Claude requires the conversation to start with a 'user' message
+    while (sanitized.length > 0 && sanitized[0].role === 'assistant') {
+      sanitized.shift();
+    }
+
     if (sanitized.length === 0) {
-      return res.status(400).json({ error: 'No valid messages provided' });
+      return res.status(400).json({ error: 'No valid user messages provided' });
     }
 
     const response = await anthropic.messages.create({
@@ -143,13 +148,18 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
     res.json({ reply });
 
   } catch (err) {
-    console.error('Claude API error:', err.message);
+    // Log full error details for Railway logs
+    console.error('Claude API error:', err.status, err.message, JSON.stringify(err.error ?? ''));
     if (err.status === 401) {
-      return res.status(500).json({ error: 'API key not configured.' });
+      return res.status(500).json({ error: 'API key inválida o no configurada.' });
+    }
+    if (err.status === 400) {
+      return res.status(500).json({ error: 'Formato de mensaje inválido: ' + err.message });
     }
     res.status(500).json({ error: 'Something went wrong. Please try again.' });
   }
 });
+
 
 // ── Fallback: serve index.html for any unknown route ─────────────────────────
 app.get('*', (req, res) => {
