@@ -1,6 +1,6 @@
 const express = require('express');
-const path    = require('path');
-const fs      = require('fs');
+const path = require('path');
+const fs = require('fs');
 
 // Polyfill fetch para Node < 18
 if (typeof fetch === 'undefined') {
@@ -26,7 +26,7 @@ if (fs.existsSync(envPath)) {
   });
 }
 
-const app  = express();
+const app = express();
 const PORT = process.env.PORT || 3000;
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 
@@ -131,7 +131,7 @@ POLITICAL COMMUNICATION TOOLS:
 - ConvergenceLab — Political convergence research platform. Live: https://convergencelab.up.railway.app/
 
 TABLEAU DASHBOARDS (public):
-- SIAG — Cardiology management dashboard. https://public.tableau.com/app/profile/juan.sotelo.aguilar/viz/Cardesk-Gestin/Dashboard1
+- SIAG — Management dashboard. https://public.tableau.com/app/profile/juan.sotelo.aguilar/viz/Cardesk-Gestin/Dashboard1
 - Violencia Intrafamiliar en Colombia — Domestic violence data visualization. https://public.tableau.com/app/profile/juan.sotelo.aguilar/viz/Datos-Polica/Violenciaintrafamiliar
 - Recursos hospitalarios por cada 100.000 habitantes — Hospital resource mapping. https://public.tableau.com/app/profile/juan.sotelo.aguilar/viz/Recursoshospitalariosporcada100000habitantes/Dashboard1
 - Registros ADRES Mayo 2025 — Health affiliation database visualization. https://public.tableau.com/app/profile/juan.sotelo.aguilar/viz/RegistrosdelaBasedeDatosnicadeAfiliados-Adres/Dashboard1
@@ -243,15 +243,15 @@ app.post('/api/chat', async (req, res) => {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
-        'Content-Type':      'application/json',
-        'x-api-key':         ANTHROPIC_API_KEY,
+        'Content-Type': 'application/json',
+        'x-api-key': ANTHROPIC_API_KEY,
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model:      'claude-sonnet-4-5-20250929',
+        model: 'claude-sonnet-4-5-20250929',
         max_tokens: 512,
-        system:     SYSTEM_PROMPT,
-        messages:   sanitized,
+        system: SYSTEM_PROMPT,
+        messages: sanitized,
       }),
     });
 
@@ -285,5 +285,5 @@ app.get('*', (req, res) => {
 // ── Start ─────────────────────────────────────────────────────────────────────
 app.listen(PORT, () => {
   console.log(`Servidor en http://localhost:${PORT}`);
-  console.log(`ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY ? 'OK (' + ANTHROPIC_API_KEY.slice(0,12) + '...)' : 'NO CONFIGURADA'}`);
+  console.log(`ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY ? 'OK (' + ANTHROPIC_API_KEY.slice(0, 12) + '...)' : 'NO CONFIGURADA'}`);
 });
