@@ -161,7 +161,7 @@ app.post('/api/chat', async (req, res) => {
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model:      'claude-3-5-haiku-20241022',
+        model:      'claude-3-haiku-20240307',
         max_tokens: 512,
         system:     SYSTEM_PROMPT,
         messages:   sanitized,
@@ -171,8 +171,9 @@ app.post('/api/chat', async (req, res) => {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error('Anthropic API error:', response.status, JSON.stringify(data));
-      return res.status(500).json({ error: data.error?.message || 'Error al contactar Claude.' });
+      const errMsg = data?.error?.message || JSON.stringify(data);
+      console.error('Anthropic API error:', response.status, errMsg);
+      return res.status(500).json({ error: `Error Anthropic (${response.status}): ${errMsg}` });
     }
 
     const reply = data.content?.[0]?.text ?? '';
