@@ -100,9 +100,9 @@ Notable projects:
 - AI voice assistants and chatbots for government and private clients
 - Geospatial monitoring platforms for CAR Cundinamarca
 
-CV / Resume — IMPORTANT: Use EXACTLY these URLs, do not modify them:
-- Spanish CV download link: [Descargar CV en Español](/CV_Juan_Diego_Sotelo_ES.pdf)
-- English CV download link: [Download CV in English](/CV_Juan_Diego_Sotelo_EN.pdf)
+CV / Resume — IMPORTANT: Use EXACTLY these full URLs as clickable links, do not shorten or modify them:
+- Spanish CV: [Descargar CV en Español](https://juansotag.up.railway.app/CV_Juan_Diego_Sotelo_ES.pdf)
+- English CV: [Download CV in English](https://juansotag.up.railway.app/CV_Juan_Diego_Sotelo_EN.pdf)
 
 BEHAVIOR RULES:
 1. Keep answers short and direct (2-4 sentences max unless a detailed list is needed).
@@ -115,7 +115,6 @@ BEHAVIOR RULES:
 // ── Static files ──────────────────────────────────────────────────────────────
 app.use(express.static(path.join(__dirname), {
   index: 'index.html',
-  extensions: ['html'],
 }));
 
 // ── Chat endpoint ─────────────────────────────────────────────────────────────
@@ -187,21 +186,15 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
-// ── Servir PDFs con Content-Type correcto ────────────────────────────────────
-app.get('/*.pdf', (req, res) => {
-  const filename = path.basename(req.path);
-  const filePath = path.join(__dirname, filename);
-  res.setHeader('Content-Type', 'application/pdf');
-  res.setHeader('Content-Disposition', `inline; filename="${filename}"`);
-  res.sendFile(filePath, err => {
-    if (err) res.status(404).send('PDF no encontrado: ' + filename);
-  });
-});
-
 // ── Fallback ──────────────────────────────────────────────────────────────────
-app.get('*', (_req, res) => {
+app.get('*', (req, res) => {
+  // Don't serve index.html for file-like paths
+  if (req.path.includes('.')) {
+    return res.status(404).send('File not found: ' + req.path);
+  }
   res.sendFile(path.join(__dirname, 'index.html'));
 });
+
 
 // ── Start ─────────────────────────────────────────────────────────────────────
 app.listen(PORT, () => {
